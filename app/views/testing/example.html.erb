@@ -1,2 +1,32 @@
+<head>
+<script>
+function allowDrop(ev)
+{
+ev.preventDefault();
+}
+
+function drag(ev)
+{
+ev.dataTransfer.setData("Text",ev.target.id);
+}
+
+function drop(ev)
+{
+ev.preventDefault();
+var data=ev.dataTransfer.getData("Text");
+ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+<body>
+
 <h1>Hello World</h1>
 <img src = "http://upload.wikimedia.org/wikipedia/commons/7/76/New_Zealand_topographic_map.jpg" width="256" alt="New Zealand map">
+
+<div id="div1" ondrop="drop(event)"
+ondragover="allowDrop(event)"></div>
+
+<img id="drag1" src="http://eborg3.com/Facebook-Animations/Buildings/an-PowerPlant.gif" draggable="true"
+ondragstart="drag(event)">
+
+</body>
