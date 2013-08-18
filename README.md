@@ -5,3 +5,4 @@ Energy Carbon Calculator Everyone Needs to Realise is Cool.
 ##Authors
 
 * David Saxon
+* Maddy Markovitz
