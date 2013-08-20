@@ -1,4 +1,11 @@
 class TestingController < ApplicationController
-  def example
+
+ def demo
   end
+
+ def example
+  end
+
+  
+
 end
