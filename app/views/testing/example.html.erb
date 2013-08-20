@@ -9,43 +9,27 @@ $( init );
 
 function init() {
   $('#wind_turbine').draggable( {
-    containment: '#nz',
-    cursor: 'move',
-    snap: '#nz'
+    containment: '#content',
+    cursor: 'move'
   } );
 }
 
 </script>
-<script>
-function allowDrop(ev)
-{
-ev.preventDefault();
-}
 
-function drag(ev)
-{
-ev.dataTransfer.setData("Text",ev.target.id);
-}
-
-function drop(ev)
-{
-ev.preventDefault();
-var data=ev.dataTransfer.getData("Text");
-ev.target.appendChild(document.getElementById(data));
-}
-</script>
 </head>
+
 <body>
 
-<h1>E.C.C.E.N.T.R.I.C. Carbon Calculator</h1>
-<img id = "nz" src = "/images/nz_map.png" width="812" alt="New Zealand map">
+<div id="content">
+    <div id="mainspace">
+        <img id="nz_map" src ="/images/nz_map.png" alt="New Zealand map"
+            height="100%">
 
-<img id = "wind_turbine" src = "/images/wind_turbine.png" alt = "Build some wind farms">
+    </div>    
+    <div id="sidebar">
+        <img id ="wind_turbine" src="/images/wind_turbine.png" alt="Build some wind farms">
+    </div>
+</div>
 
-<div id="div1" ondrop="drop(event)"
-ondragover="allowDrop(event)"></div>
-
-<img id="drag1" src="http://eborg3.com/Facebook-Animations/Buildings/an-PowerPlant.gif" draggable="true"
-ondragstart="drag(event)">
 
 </body>
