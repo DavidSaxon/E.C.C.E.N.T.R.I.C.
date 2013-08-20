@@ -8,10 +8,15 @@
 $( init );
 
 function init() {
-  $('#wind_turbine').draggable( {
-    containment: '#content',
-    cursor: 'move'
-  } );
+
+    var draggables = document.getElementsByClassName('draggable_class');
+    for (var i = 0; i < draggables.length; ++i) {
+        var item = draggables[i];  
+        $(item).draggable( {
+            containment: '#content',
+            cursor: 'move'
+        } );
+    }
 }
 
 </script>
@@ -27,7 +32,18 @@ function init() {
 
     </div>    
     <div id="sidebar">
-        <img id ="wind_turbine" src="/images/wind_turbine.png" alt="Build some wind farms">
+        <table>
+            <tr>
+               <th>Title</th>
+               <th>Text</th>
+           </tr>
+            <% @random.each do |something| %>
+                <tr>
+                    <td><%= something.name %></td>
+                    <td><%= image_tag something.url, class: "draggable_class", id: something.name %></td>
+                </tr>
+            <% end %>
+        </table>
     </div>
 </div>
 

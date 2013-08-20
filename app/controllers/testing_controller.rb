@@ -4,7 +4,8 @@ class TestingController < ApplicationController
   end
 
  def example
-  end
+ 	@random = MapItem.all
+ end
 
   
 
