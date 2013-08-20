@@ -1,4 +1,6 @@
 class TestingController < ApplicationController
-  def example
-  end
+	def new
+	end
+	def example
+	end
 end
