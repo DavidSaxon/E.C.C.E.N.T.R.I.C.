@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+  <script type="text/javascript">
+
+  $( init );
+
+  function init() {
+
+  // Create the pile of shuffled cards
+  var words = [ 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten' ];
+
+  for ( var i=0; i<3; i++ ) {
+    $('<div>' + i + '</div>').data( 'number' , i ).attr( 'id', 'nzdrag' ).appendTo( '#pane' ).draggable( {
+      containment: '#contain',
+      stack: '#pane div',
+      cursor: 'move',
+      revert: true
+    } );
+  }
+
+  for ( var i=0; i<3; i++ ) {
+    $('<div>' + words[i] + '</div>').data( 'number', i ).attr( 'id', 'nzdrop' + i).appendTo( '#drop' ).droppable( {
+      accept: '#pane div',
+      hoverClass: 'hovered',
+      drop: receiveCard
+    } );
+  }
+
+}
+
+function receiveCard( event, ui ) {
+  ui.draggable.addClass( 'correct' );
+  ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+  ui.draggable.draggable( 'option', 'revert', false );
+
+  alert("you dropped something on to the map");
+}
+
+</script>
+
+</head>
+<body>
+  <div id="contain">
+
+    <div id="nz">
+      <img src="/images/map_nz.png">
+      <div id="drop"> </div>
+    </div>
+
+    <div id="tab">
+      <div id="pane"> </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

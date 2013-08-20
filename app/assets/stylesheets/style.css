@@ -1,0 +1,63 @@
+
+/* Add some margin to the page and set a default font and colour */
+
+body {
+  margin: 0px;
+  font-family: "Georgia", serif;
+  line-height: 1.8em;
+  color: #333;
+  background-color: #CCCCCC;
+}
+
+#contain {
+    width: 600px;
+    overflow: auto; /* so the size of the wrapper is alway the size of the longest content */
+}
+#nz {
+    float: left;
+    width: 423px;
+    height: 440px;
+}
+#tab {
+    margin: 0 0 0 423px; /* this should be #nz's width div*/
+}
+
+#pane{
+  width:70px;
+  height: 538px;
+  background-color: #BBBBBB;
+}
+
+#nzdrag{
+  width: 30px;
+  height: 30px;
+  background-color: #EEEEEE;
+}
+
+#nzdrop0, #nzdrop1, #nzdrop2{
+  width: 30px;
+  height: 30px;
+  background-color: #FFFFFF;
+}
+
+#nzdrop0{
+position:absolute;
+  left:220px;
+  top:30px;
+}
+
+#nzdrop1{
+position:absolute;
+  left:250px;
+  top:130px;
+}
+
+#nzdrop2{
+position:absolute;
+  left:180px;
+  top:230px;
+}
+
+#nzdrop0.hovered, #nzdrop1.hovered, #nzdrop2.hovered{
+  background: #aaa;
+}
