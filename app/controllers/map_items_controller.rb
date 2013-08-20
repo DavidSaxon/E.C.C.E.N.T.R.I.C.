@@ -1,10 +1,16 @@
 class MapItemsController < ApplicationController
 	def new
 	end
+	
 	def create
 		@map_item = MapItem.new(params[:map_item].permit(:name, :url))
   		@map_item.save
   		redirect_to @map_item
+  	end
+
+  	def destroy
+  		@words = params
+  		MapItem.destroy(MapItem.find(params[:id]))
   	end
 
   	def show
