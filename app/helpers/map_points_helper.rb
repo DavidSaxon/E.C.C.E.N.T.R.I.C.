@@ -1,0 +1,2 @@
+module MapPointsHelper
+end

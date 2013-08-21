@@ -1,0 +1,21 @@
+<h1>Listing items</h1>
+ 
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Description</th>
+    <th>X</th>
+    <th>Y</th>
+    <th>Delete</th>
+  </tr>
+ 
+  <% @random.each do |something| %>
+    <tr>
+      <td><%= something.title %></td>
+      <td><%= something.description %></td>
+      <td><%= something.x %></td>
+      <td><%= something.y %></td>
+      <td><%= button_to "delete", something, :method=>:delete, :class=>:destroy, :confirm => 'Are you sure?' %></td>
+    </tr>
+  <% end %>
+</table>

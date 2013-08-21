@@ -15,7 +15,6 @@ ECCENTRIC::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
    resources :map_items
-   resources :map_points
 
   # Example resource route with options:
   #   resources :products do

@@ -3,26 +3,26 @@ class MapItemsController < ApplicationController
 	end
 	
 	def create
-		@map_item = MapItem.new(params[:map_item].permit(:name, :url))
-  		@map_item.save
-  		redirect_to @map_item
-  	end
+    @map_item = MapItem.new(map_item_params)
+    @map_item.save
+    redirect_to @map_item
+  end
 
-  	def destroy
-  		@words = params
-  		MapItem.destroy(MapItem.find(params[:id]))
-  	end
+  def destroy
+  	@words = params
+  	MapItem.destroy(MapItem.find(params[:id]))
+  end
 
-  	def show
-  		@map_item = MapItem.find(params[:id])
+  def show
+    @map_item = MapItem.find(params[:id])
 	end
 
 	def index
-  		@random = MapItem.all
+  	@random = MapItem.all
 	end
 
 private
-  	def map_item_params
-    	params.require(:map_item).permit(:name, :url)
+  def map_item_params
+    params.require(:map_item).permit(:name, :url)
  	end
 end
