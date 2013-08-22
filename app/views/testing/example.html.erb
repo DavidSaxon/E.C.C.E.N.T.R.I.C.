@@ -38,7 +38,7 @@ function init() {
                 action:function() { 
                     alert(right_x + ', ' + right_y);
                     //new Ajax.Request('/map_points/new?x=' + right_x + ",y=" + right_y, {asynchronous:true, evalScripts:true});
-                    $.ajax('/map_points/new', {
+                    $.ajax('/map_points/update', {
                         type: 'PUT',
                         data: { title: 'point', description: 'some random point', x: right_x, y: right_y },
                         //success: function() { .. },
@@ -70,6 +70,12 @@ function init() {
         headers: {
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
     }
+
+
+
+
+
+
 });
 }
 
@@ -80,6 +86,11 @@ function init() {
 </head>
 
 <body>
+
+
+<% @points.each do |point| %>
+    <%= image_tag "purple.jpg", class: point.title, id: point.description, left: point.x, top: point.y %>
+<% end %>
 
 <div id="content">
     <div id="mainspace">
@@ -100,7 +111,6 @@ function init() {
         </table>
     </div>
 </div>
-
 
 </body>
 

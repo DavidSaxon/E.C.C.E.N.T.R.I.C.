@@ -5,6 +5,7 @@ class TestingController < ApplicationController
 
  def example
  	@random = MapItem.all
+ 	@points = MapPoint.all
  end
 
   
