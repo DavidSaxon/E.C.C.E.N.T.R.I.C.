@@ -26,8 +26,8 @@ function init() {
             stop: function( event, ui ) {
                 //$(this).after($(ui.helper).clone().draggable());
                 var clone = $(ui.helper).clone(true).appendTo('body');
-                ui.helper.data( 'draggable', jQuery.extend(true, {}, clone.data('draggable')) );
-                ui.helper.data( 'droppable', jQuery.extend(true, {}, clone.data('droppable')) );
+                clone.data( 'draggable', jQuery.extend(true, {}, $(ui.helper).data('draggable')) );
+                //ui.helper.data( 'droppable', jQuery.extend(true, {}, clone.data('droppable')) );
 
             }
         });
