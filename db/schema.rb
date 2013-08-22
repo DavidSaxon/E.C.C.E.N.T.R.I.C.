@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821112944) do
+ActiveRecord::Schema.define(version: 20130822080834) do
 
   create_table "map_items", force: true do |t|
     t.string   "name"
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(version: 20130821112944) do
     t.string   "description"
     t.integer  "x"
     t.integer  "y"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "simulations", force: true do |t|
+    t.integer  "simuid"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.integer  "userid"
+    t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
