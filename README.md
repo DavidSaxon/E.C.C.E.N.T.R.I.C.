@@ -6,3 +6,4 @@ Energy Carbon Calculator Everyone Needs to Realise is Cool.
 
 * David Saxon
 * Maddy Markovitz
+* Jonathan Remnant
