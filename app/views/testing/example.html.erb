@@ -1,5 +1,3 @@
-<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js" %>
-<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" %>
 <%= javascript_include_tag "http://d3js.org/d3.v3.min.js", charset: "utf-8" %>
 
 <head>
@@ -23,8 +21,21 @@ function init() {
         var item = draggables[i];  
         $(item).draggable( {
             containment: '#content',
-            cursor: 'move'
-        } );
+            cursor: 'move',
+            helper: 'clone',
+            stop: function( event, ui ) {
+                //$(this).after($(ui.helper).clone().draggable());
+                var clone = $(ui.helper).clone(true).appendTo('body');
+                ui.helper.data( 'draggable', jQuery.extend(true, {}, clone.data('draggable')) );
+                ui.helper.data( 'droppable', jQuery.extend(true, {}, clone.data('droppable')) );
+
+            }
+        });
+        $(item).bind('dragstop', function(event, ui) {
+            //var original = $(this);
+            //var clone = original.clone().insertAfter(this);
+            
+        });
     }
 
     map = document.getElementById('mainspace');
@@ -43,7 +54,7 @@ function init() {
                     });
 
                     point = $('<%= image_tag "/images/blue.png", class: "point", id: "point" %>').css({left:right_x + 'px', top:right_y + 'px'});
-                    map.append(point);
+                    $(map).append(point);
                 } },
             { label:'Another Thing',
                 action:function() { alert('clicked 2') } },
