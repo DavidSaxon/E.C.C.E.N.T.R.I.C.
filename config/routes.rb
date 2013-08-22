@@ -1,4 +1,8 @@
 ECCENTRIC::Application.routes.draw do
+  resources :simulations
+
+  resources :users
+
   get "testing/example"
   get "testing/demo"
   # The priority is based upon order of creation: first created -> highest priority.
