@@ -1,0 +1,47 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<%= link_to 'Edit', edit_simulation_path(@simulation) %> |
+<%= link_to 'Back', simulations_path %>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>template</h1>
+        <p class="lead">The simulation page should be here!</p>
+        <p id="notice"><%= notice %></p>
+
+		<p>
+		  <strong>Simuid:</strong>
+		  <%= @simulation.simuid %>
+		</p>
+
+		<p>
+		  <strong>Name:</strong>
+		  <%= @simulation.name %>
+		</p>
+
+		<h2>Players</h2>
+		<% @simulation.players.each do |player| %>
+		  <p>
+		    <strong>Player:</strong>
+		    <%= player.userid %>
+		  </p>
+
+		<% end %>
+
+		<h2>Add a player:</h2>
+		<%= form_for([@simulation, @simulation.players.build]) do |f| %>
+		  <p>
+		    <%= f.label :commenter %><br />
+		    <%= f.text_field :commenter %>
+		  </p>
+		  <p>
+		    <%= f.submit %>
+		  </p>
+		<% end %>
+
+      </div>
+
+    </div><!-- /.container -->
+

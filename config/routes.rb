@@ -1,7 +1,5 @@
 ECCENTRIC::Application.routes.draw do
-  resources :simulations
 
-  resources :users
 
   get "testing/example"
   get "testing/demo"
@@ -18,8 +16,14 @@ ECCENTRIC::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-   resources :map_items
-   resources :map_points
+  resources :map_items
+  resources :map_points
+
+  resources :simulations do
+    resources :players
+  end
+
+  resources :users
 
   # Example resource route with options:
   #   resources :products do

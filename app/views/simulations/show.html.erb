@@ -1,14 +1,31 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Simuid:</strong>
-  <%= @simulation.simuid %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @simulation.name %>
-</p>
-
 <%= link_to 'Edit', edit_simulation_path(@simulation) %> |
 <%= link_to 'Back', simulations_path %>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1><%= @simulation.name %></h1>
+        <p id="notice"><%= notice %></p>
+
+		<p class="lead">The simulation page should be here!</p>
+		<p>
+		  <strong>Simuid:</strong>
+		  <%= @simulation.simuid %>
+		</p>
+
+		<h2>Players</h2>
+		<% @simulation.players.each do |player| %>
+		  <p>
+		    <strong>Player:</strong>
+		    <%= player.user_id %>
+		  </p>
+		  <strong>Role:</strong>
+		    <%= player.roletitle %>
+		  </p>
+
+		<% end %>
+
+      </div>
+
+    </div><!-- /.container -->
+

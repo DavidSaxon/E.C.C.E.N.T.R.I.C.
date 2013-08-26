@@ -2,5 +2,32 @@
 
 <%= render 'form' %>
 
+		<h2>Players</h2>
+		<% @simulation.players.each do |player| %>
+		  <p>
+		    <strong>Player:</strong>
+		    <%= player.user_id %>
+		  </p>
+		  <strong>Role:</strong>
+		    <%= player.roletitle %>
+		  </p>
+
+		<% end %>
+
+		<h2>Add a player:</h2>
+		<%= form_for([@simulation, @simulation.players.build]) do |f| %>
+		  <p>
+		    <%= f.label :user %><br />
+		    <%= f.text_field :user, {:type => 'number'} %>
+		  </p>
+		  <p>
+		    <%= f.label :roletitle %><br />
+		    <%= f.text_field :roletitle %>
+		  </p>
+		  <p>
+		    <%= f.submit %>
+		  </p>
+		<% end %>
+
 <%= link_to 'Show', @simulation %> |
 <%= link_to 'Back', simulations_path %>
