@@ -1,24 +1,19 @@
+    <div class="container">
+
+      <div class="starter-template">
+
 <h1>Editing simulation</h1>
 
 <%= render 'form' %>
 
 		<h2>Players</h2>
-		<% @simulation.players.each do |player| %>
-		  <p>
-		    <strong>Player:</strong>
-		    <%= player.user_id %>
-		  </p>
-		  <strong>Role:</strong>
-		    <%= player.roletitle %>
-		  </p>
-
-		<% end %>
+		<%= render @simulation.players %>
 
 		<h2>Add a player:</h2>
 		<%= form_for([@simulation, @simulation.players.build]) do |f| %>
 		  <p>
 		    <%= f.label :user %><br />
-		    <%= f.text_field :user, {:type => 'number'} %>
+		    <%= f.number_field :user %>
 		  </p>
 		  <p>
 		    <%= f.label :roletitle %><br />
@@ -31,3 +26,7 @@
 
 <%= link_to 'Show', @simulation %> |
 <%= link_to 'Back', simulations_path %>
+
+      </div>
+
+    </div><!-- /.container -->

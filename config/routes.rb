@@ -1,5 +1,6 @@
 ECCENTRIC::Application.routes.draw do
 
+  resources :settings
 
   get "testing/example"
   get "testing/demo"
@@ -22,7 +23,7 @@ ECCENTRIC::Application.routes.draw do
   resources :simulations do
     resources :players
   end
-
+  resources :policies
   resources :users
 
   # Example resource route with options:

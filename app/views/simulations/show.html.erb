@@ -14,14 +14,19 @@
 		</p>
 
 		<h2>Players</h2>
-		<% @simulation.players.each do |player| %>
+		<% @simulation.players.each do |player| %> 
 		  <p>
 		    <strong>Player:</strong>
-		    <%= player.user_id %>
+		    <%= player.user_id %> (<%= player.user.username %>)
 		  </p>
 		  <strong>Role:</strong>
 		    <%= player.roletitle %>
 		  </p>
+		  <% player.policy.each do |policy| %> 
+		  		strong>Role:</strong>
+		    		<%= player.roletitle %>
+		  		</p>
+		  <% end %>
 
 		<% end %>
 

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Player:</strong>
+  <%= @policy.player %>
+</p>
+
+<p>
+  <strong>Setting:</strong>
+  <%= @policy.setting %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @policy.value %>
+</p>
+
+<%= link_to 'Edit', edit_policy_path(@policy) %> |
+<%= link_to 'Back', policies_path %>

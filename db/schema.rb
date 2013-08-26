@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130826055443) do
+ActiveRecord::Schema.define(version: 20130826100625) do
 
   create_table "map_items", force: true do |t|
     t.string   "name"
@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20130826055443) do
   end
 
   create_table "players", force: true do |t|
-    t.string   "roletitle"
-    t.integer  "user_id"
-    t.integer  "simulation_id"
+    t.string   "roletitle",     default: "", null: false
+    t.integer  "user_id",       default: 0,  null: false
+    t.integer  "simulation_id", default: 0,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,16 +40,35 @@ ActiveRecord::Schema.define(version: 20130826055443) do
   add_index "players", ["simulation_id"], name: "index_players_on_simulation_id"
   add_index "players", ["user_id"], name: "index_players_on_user_id"
 
+  create_table "policies", force: true do |t|
+    t.integer  "player_id",  default: 0, null: false
+    t.integer  "setting_id", default: 0, null: false
+    t.integer  "value",      default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "policies", ["player_id"], name: "index_policies_on_player_id"
+  add_index "policies", ["setting_id"], name: "index_policies_on_setting_id"
+
+  create_table "settings", force: true do |t|
+    t.integer  "settid",      default: 0,  null: false
+    t.string   "title",       default: "", null: false
+    t.text     "description", default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "simulations", force: true do |t|
-    t.integer  "simuid"
-    t.string   "name"
+    t.integer  "simuid",     default: 0,  null: false
+    t.string   "name",       default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.integer  "userid"
-    t.string   "username"
+    t.integer  "userid",     default: 0,  null: false
+    t.string   "username",   default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

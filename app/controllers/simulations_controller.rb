@@ -1,6 +1,8 @@
 class SimulationsController < ApplicationController
   before_action :set_simulation, only: [:show, :edit, :update, :destroy]
 
+  #http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+
   # GET /simulations
   # GET /simulations.json
   def index
