@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130827072401) do
+ActiveRecord::Schema.define(version: 20130827114710) do
+
+  create_table "displays", force: true do |t|
+    t.string   "name"
+    t.integer  "group"
+    t.string   "pathname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "map_items", force: true do |t|
     t.string   "name"

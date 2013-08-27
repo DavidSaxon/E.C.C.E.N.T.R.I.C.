@@ -1,0 +1,31 @@
+<h1>Listing displays</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Group</th>
+      <th>Pathname</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @displays.each do |display| %>
+      <tr>
+        <td><%= display.name %></td>
+        <td><%= display.group %></td>
+        <td><%= display.pathname %></td>
+        <td><%= link_to 'Show', display %></td>
+        <td><%= link_to 'Edit', edit_display_path(display) %></td>
+        <td><%= link_to 'Destroy', display, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Display', new_display_path %>

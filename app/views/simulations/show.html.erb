@@ -3,6 +3,15 @@
 <div id="this-carousel-id" class="carousel slide"><!-- class of slide for animation -->
   <div class="carousel-inner">
     <div class="item active"><!-- class of active since it's the first item -->
+      <% Display.all.each do |display| %>
+
+      <%= image_tag display.pathname %>
+      <div class="carousel-caption">
+        <p><%= display.name %></p>
+      </div>
+
+      <% end %>
+
       <img src="http://placehold.it/1200x480" alt="" />
       <div class="carousel-caption">
         <p>Caption text here</p>
@@ -59,5 +68,13 @@
 <script>
   $(document).ready(function(){
     $('.carousel').carousel();
+
+
+      // produce sliders
+    var sliders = document.getElementsByClassName('slider');
+    for (var i = 0; i < sliders.length; ++i) {
+      var item = sliders[i];
+      $(item).slider( { value: 15 } );
+    }
   });
 </script>

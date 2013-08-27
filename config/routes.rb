@@ -1,5 +1,7 @@
 ECCENTRIC::Application.routes.draw do
 
+  resources :displays
+
   resources :settings
 
   get "testing/example"

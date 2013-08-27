@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @display.name %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @display.group %>
+</p>
+
+<p>
+  <strong>Pathname:</strong>
+  <%= @display.pathname %>
+</p>
+
+<%= link_to 'Edit', edit_display_path(@display) %> |
+<%= link_to 'Back', displays_path %>
