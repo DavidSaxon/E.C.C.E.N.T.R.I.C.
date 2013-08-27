@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130826100625) do
+ActiveRecord::Schema.define(version: 20130827072401) do
 
   create_table "map_items", force: true do |t|
     t.string   "name"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20130826100625) do
   add_index "policies", ["setting_id"], name: "index_policies_on_setting_id"
 
   create_table "settings", force: true do |t|
-    t.integer  "settid",      default: 0,  null: false
     t.string   "title",       default: "", null: false
     t.text     "description", default: "", null: false
     t.datetime "created_at"
@@ -60,14 +59,12 @@ ActiveRecord::Schema.define(version: 20130826100625) do
   end
 
   create_table "simulations", force: true do |t|
-    t.integer  "simuid",     default: 0,  null: false
     t.string   "name",       default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.integer  "userid",     default: 0,  null: false
     t.string   "username",   default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"

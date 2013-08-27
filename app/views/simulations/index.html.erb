@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Simuid</th>
+      <th>ID</th>
       <th>Name</th>
       <th></th>
       <th></th>
@@ -14,7 +14,7 @@
   <tbody>
     <% @simulations.each do |simulation| %>
       <tr>
-        <td><%= simulation.simuid %></td>
+        <td><%= simulation.id %></td>
         <td><%= simulation.name %></td>
         <td><%= link_to 'Show', simulation %></td>
         <td><%= link_to 'Edit', edit_simulation_path(simulation) %></td>

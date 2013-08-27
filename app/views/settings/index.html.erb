@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Settid</th>
+      <th>id</th>
       <th>Title</th>
       <th>Description</th>
       <th></th>
@@ -15,7 +15,7 @@
   <tbody>
     <% @settings.each do |setting| %>
       <tr>
-        <td><%= setting.settid %></td>
+        <td><%= setting.id %></td>
         <td><%= setting.title %></td>
         <td><%= setting.description %></td>
         <td><%= link_to 'Show', setting %></td>

@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
 	# POST /policies.json
 	def create
     	@simulation = Simulation.find(params[:simulation_id])
-    	@player = @simulation.players.create(roletitle: params[:player][:roletitle], user_id: params[:player][:user], simulation_id: params[:simulation_id])
+    	@player = @simulation.players.create(roletitle: params[:player][:roletitle], user_id: params[:player][:user_id], simulation_id: params[:simulation_id])
 
 		respond_to do |format|
 			if @player.save
@@ -27,6 +27,6 @@ class PlayersController < ApplicationController
 
 private
     def player_params
-      params.require(:player).permit(:roletitle, User.find(params[:player][:user]), :simulation_id);
+      params.require(:player).permit(:roletitle, :user_id, :simulation_id);
     end
 end

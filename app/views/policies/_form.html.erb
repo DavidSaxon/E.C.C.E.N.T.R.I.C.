@@ -13,11 +13,15 @@
 
   <div class="field">
     <%= f.label :user %><br>
-    <%= f.text_field :user, :value => @current_pl %>
+    <%= f.number_field :user, :value => @current_pl %>
+  </div>
+  <div class="field">
+    <%= f.label :simulation %><br>
+    <%= f.number_field :simulation, :value => @current_sim %>
   </div>
   <div class="field">
     <%= f.label :setting %><br>
-    <%= f.text_field :setting %>
+    <%= f.number_field :setting %>
   </div>
   <div class="field">
     <%= f.label :value %><br>

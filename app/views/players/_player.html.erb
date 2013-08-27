@@ -1,18 +1,44 @@
-<% @simulation.players.each do |player| %>
   <p>
     <strong>Player:</strong>
-    <%= player.user_id %>
+    <%= player.user_id %> (<% if not player.user.nil? %><%= player.user.username %><% else %>invalid user<% end %>)
   </p>
+
   <strong>Role:</strong>
     <%= player.roletitle %>
   </p>
 
-	<p>
-
-	<%= link_to 'New Policy', new_policy_path( :current => player.user_id ) %>
-  	<%= link_to 'Remove Player', [player.simulation, player],
+    <% player.policy.each do |policy| %> 
+      <strong>Policy:</strong>
+          <%= policy.setting.title %> set to <%= policy.value %>
+      </p>
+      <div class="slider"></div>
+    <% end %>
+  
+  <%= link_to 'New Policy', new_policy_path( :current_pl => player.user_id, :current_sim => player.simulation_id ) %>
+  <%= link_to 'Remove Player', [player.simulation, player],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
-	</p>
+  </p>
 
- <% end %>
+<style type='text/css'>
+#slider {
+  width: 500px;
+}
+</style>
+
+
+
+<script>
+
+$('document').ready(function(){
+  // produce sliders
+  var sliders = document.getElementsByClassName('slider');
+  for (var i = 0; i < sliders.length; ++i) {
+      var item = sliders[i];
+      $(item).slider( { value: 15 } );
+  }
+});
+
+
+</script>
+

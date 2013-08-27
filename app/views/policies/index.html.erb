@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Player</th>
+      <th>Simulation</th>
       <th>Setting</th>
       <th>Value</th>
       <th></th>
@@ -15,8 +16,19 @@
   <tbody>
     <% @policies.each do |policy| %>
       <tr>
-        <td><%= policy.player %></td>
-        <td><%= policy.setting %></td>
+        <% if not policy.player.nil? %>
+        <td><%= policy.player.user.username %></td>
+        <td><%= policy.player.simulation.name %></td>
+        <% else %>
+        <td> Invalid Player </td><td> Invalid Simulation </td>
+        <% end %>
+
+        <% if not policy.setting.nil? %>
+        <td><%= policy.setting.id %></td>
+        <% else %>
+        <td> Invalid setting </td>
+        <% end %>
+
         <td><%= policy.value %></td>
         <td><%= link_to 'Show', policy %></td>
         <td><%= link_to 'Edit', edit_policy_path(policy) %></td>

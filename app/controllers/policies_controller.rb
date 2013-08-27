@@ -15,7 +15,8 @@ class PoliciesController < ApplicationController
   # GET /policies/new
   def new
     @policy = Policy.new
-    @current_pl = params[:current]
+    @current_pl = params[:current_pl]
+    @current_sim = params[:current_sim]
   end
 
   # GET /policies/1/edit
@@ -26,9 +27,10 @@ class PoliciesController < ApplicationController
   # POST /policies.json
   def create
     #@policy = Policy.new(policy_params)
-    #@user = User.find(params[:policy][:user])
-    #@policy = @user.policies.create(value: params[:policy][:value], setting_id: params[:policy][:setting], player_id: params[:policy][:user])
-    @policy = Policy.new(value: params[:policy][:value], setting_id: params[:policy][:setting], player_id: params[:policy][:user])
+    #@policy = @player.policies.create(value: params[:policy][:value], setting_id: params[:policy][:setting], player_id: params[:policy][:user])
+    @user = User.find(params[:policy][:user])
+    @player = @user.players.find(params[:policy][:simulation])   
+    @policy = Policy.new(value: params[:policy][:value], setting_id: params[:policy][:setting], player_id: @player.id)
 
     respond_to do |format|
       if @policy.save
