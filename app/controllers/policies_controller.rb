@@ -29,7 +29,9 @@ class PoliciesController < ApplicationController
     #@policy = Policy.new(policy_params)
     #@policy = @player.policies.create(value: params[:policy][:value], setting_id: params[:policy][:setting], player_id: params[:policy][:user])
     @user = User.find(params[:policy][:user])
-    @player = @user.players.find(params[:policy][:simulation])   
+    @player = @user.players.where(["simulation_id = ?", params[:policy][:simulation]]).first()
+    #@player = @user.players.find(:id => simulation_id, params[:policy][:simulation])   
+    #@player = @user.players.find(:all, :conditions => players.simulation_id = params[:policy][:simulation])
     @policy = Policy.new(value: params[:policy][:value], setting_id: params[:policy][:setting], player_id: @player.id)
 
     respond_to do |format|
