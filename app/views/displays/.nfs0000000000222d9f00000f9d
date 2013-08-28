@@ -1,6 +1,7 @@
 <%= javascript_include_tag "http://d3js.org/d3.v3.min.js", charset: "utf-8" %>
 <!--<%= image_tag @display.pathname %>-->
-<div id="data_field"></div>
+<div id="data_field">
+</div>
 
 <script>
 
