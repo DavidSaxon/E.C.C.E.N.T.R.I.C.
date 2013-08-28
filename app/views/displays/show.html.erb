@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= render 'display' %>
+
 <p>
   <strong>Name:</strong>
   <%= @display.name %>
@@ -17,3 +19,5 @@
 
 <%= link_to 'Edit', edit_display_path(@display) %> |
 <%= link_to 'Back', displays_path %>
+
+
