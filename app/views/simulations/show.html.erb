@@ -29,7 +29,18 @@
     var sliders = document.getElementsByClassName('slider');
     for (var i = 0; i < sliders.length; ++i) {
       var item = sliders[i];
-      $(item).slider( { value: 15 } );
+      $(item).slider( { 
+        value: 15,
+        change: function(e, ui){
+          //Do something with ui.value
+          //$.ajax('/policies/update', {
+          //  type: 'PUT',
+          //  data: { title: 'point', description: 'some random point', x: right_x, y: right_y },
+            //success: function() { .. },
+            //error: function() { .. }
+          //});
+        } 
+      });
     }
   });
 </script>

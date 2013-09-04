@@ -72,3 +72,22 @@ class DisplaysController < ApplicationController
       params.require(:display).permit(:name, :group, :pathname)
     end
 end
+
+class Graph < DisplaysController
+  def create
+    @display = Graph.new(display_params)
+
+    respond_to do |format|
+      if @display.save
+        format.html { redirect_to @display, notice: 'Display was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @display }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @display.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+end
+
+class Image < DisplaysController
+end

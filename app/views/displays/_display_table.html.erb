@@ -11,35 +11,18 @@
       </div>
 
       <div class="item">
-        <img src="http://placehold.it/1200x480" alt="" />
+        <%= render 'displays/graph' %>
         <div class="carousel-caption">
-          <p>Caption text here</p>
+          <p>Graph</p>
         </div>
       </div>
 
       <div class="item">
-        <img src="http://placehold.it/1200x480" alt="" />
+        <%= render 'displays/test' %>
         <div class="carousel-caption">
-          <p>Caption text here</p>
+          <p>Test</p>
         </div>
       </div>
-
-      <div class="item">
-        <img src="http://placehold.it/1200x480" alt="" />
-        <div class="carousel-caption">
-          <p>Caption text here</p>
-        </div>
-      </div>
-
-      <% Display.all.each do |item| %>
-        <div class="item">
-          <% @display = item %>
-          <%= render @display %>
-          <div class="carousel-caption">
-            <p><%= item.name %></p>
-          </div>
-        </div>
-      <% end %>
 
     </div><!-- /.carousel-inner -->
   <!--  Next and Previous controls below
