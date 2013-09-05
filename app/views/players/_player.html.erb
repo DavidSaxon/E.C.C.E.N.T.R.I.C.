@@ -1,27 +1,48 @@
-  <p>
-    <strong>Player:</strong>
-    <%= player.user_id %> (<% if not player.user.nil? %><%= player.user.username %><% else %>invalid user<% end %>)
-  </p>
+<div class="row">
+<div class="col-sm-6"> 
+<p>
+  <strong>Player:</strong>
+  <%= player.user_id %> (<% if not player.user.nil? %><%= player.user.username %><% else %>invalid user<% end %>)
+</p>
+</div>
 
-  <strong>Role:</strong>
+<div class="col-sm-6">
+  <p>
+    <strong>Role:</strong>
     <%= player.roletitle %>
   </p>
+</div>
+</div>
 
-    <% player.policy.each do |policy| %> 
-      <strong>Policy:</strong>
-          <%= policy.setting.title %> set to <%= policy.value %>
-      </p>
-      <div class="slider"></div>
-    <% end %>
-  
+
+<% player.policy.each do |policy| %> 
+<div class="row">
+  <div class="col-sm-3">
+    <strong>Policy:</strong>
+  </div>
+  <div class="col-sm-3">
+    <%= policy.setting.title %> set to <%= policy.value %>
+  </div>
+  <div class="col-sm-6">
+    <div class="slider"></div>
+  </div>
+</div>
+<% end %>
+
+
+<div class="row">
+<div class="col-sm-12">
   <%= link_to 'New Policy', new_policy_path( :current_pl => player.user_id, :current_sim => player.simulation_id ) %>
   <%= link_to 'Remove Player', [player.simulation, player],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
-  </p>
+
+</div>
+</div>
+<hr>
 
 <style type='text/css'>
 #slider {
-  width: 500px;
+  width: 100%;
 }
 </style>
