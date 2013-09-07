@@ -56,9 +56,27 @@ img {
 }
 
 #clouds {
+
+    opacity: 0;
     padding: inherit;
     margin: inherit;
     margin-left: 25%;
     position: absolute;
     user-select: none;
+}
+
+#slider_title {
+    
+    margin-bottom: 2%;
+    font-size: 200%;
+    margin-top: 100%;
+    margin-left: 15%;
+}
+
+#slider {
+
+    margin-left: 15%;
+    background: #cccccc;
+    width: 70%;
+    height: 5px;
 }

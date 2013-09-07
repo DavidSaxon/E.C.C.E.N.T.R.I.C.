@@ -12,6 +12,7 @@ var right_x, right_y;
 var map;
 var point;
 
+
 $( init );
 
 function init() {
@@ -38,6 +39,17 @@ function init() {
             
         });
     }
+
+    //make sliders
+    $("#slider").slider({
+        min: 0,
+        max: 100,
+        step: 25,
+        slide: function() {
+
+            $("#clouds").css({opacity: $("#slider").slider( "value" ) / 100.0});
+        }
+    });
 
     map = document.getElementById('mainspace');
     $(map).contextPopup({
@@ -86,37 +98,6 @@ function init() {
 });
 }
 
-//cloud opacity values
-var cloudOpacity = 1.0;
-var cloudOpUp = false;
-
-//changes cloud
-document.onclick = function() {
-
-    //change clouds opacity
-    if (cloudOpUp) {
-
-        cloudOpacity += 0.1;
-    }
-    else {
-
-        cloudOpacity -= 0.1;
-    }
-
-    if (cloudOpacity < 0.0) {
-
-        cloudOpUp = true;
-        cloudOpacity = 0.0;
-    }
-    else if (cloudOpacity > 1.0) {
-
-        cloudOpUp = false;
-        cloudOpacity = 1.0;
-    }
-
-    $("#clouds").css({opacity: cloudOpacity});
-};
-
 // just testing again .......
 jQuery(document).ready(function () { 
     var map = $('#nz_map');
@@ -144,7 +125,9 @@ jQuery(document).ready(function () {
         <img id="clouds" src="/images/clouds.png", alt: "clouds">
     </div>    
     <div id="sidebar">
-        <table>
+        <div id="slider_title">Amount of Carbon</div>
+        <div id="slider"></div>
+        <!-- <table>
             <tr>
                <th>Name</th>
                <th>Item</th>
@@ -155,7 +138,7 @@ jQuery(document).ready(function () {
                     <td><%= image_tag something.url, class: "draggable_class", id: something.name %></td>
                 </tr>
             <% end %>
-        </table>
+        </table> -->
     </div>
 </div>
 
