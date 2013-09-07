@@ -49,8 +49,9 @@ class PoliciesController < ApplicationController
   # PATCH/PUT /policies/1.json
   def update
     respond_to do |format|
+
       if @policy.update(policy_params)
-        format.html { redirect_to @policy, notice: 'Policy was successfully updated.' }
+        #format.html { redirect_to @policy, notice: 'Policy was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
