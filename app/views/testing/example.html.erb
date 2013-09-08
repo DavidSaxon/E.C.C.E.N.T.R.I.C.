@@ -44,10 +44,13 @@ function init() {
     $("#slider").slider({
         min: 0,
         max: 100,
-        step: 25,
         slide: function() {
 
-            $("#clouds").css({opacity: $("#slider").slider( "value" ) / 100.0});
+            $("#clouds").css({opacity: $("#slider").slider("value") / 100.0});
+            var demandLevel = Math.floor($("#slider").slider("value") / 3) + 10;
+            $("#demand_bar").css("margin-top", demandLevel.toString() + "%");
+            demandLevel = 49 - demandLevel;
+            $("#supply_bar").css("margin-top", demandLevel.toString() + "%");
         }
     });
 
@@ -121,6 +124,9 @@ jQuery(document).ready(function () {
 
 <div id="content">
     <div id="mainspace">
+
+        <div id="demand_bar">Energy Demand</div>
+        <div id="supply_bar">Energy Supply</div>
         <img id="nz_map" src="/images/nz_map.png", alt: "New Zealand map">
         <img id="clouds" src="/images/clouds.png", alt: "clouds">
     </div>    

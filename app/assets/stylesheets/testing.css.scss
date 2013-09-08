@@ -47,7 +47,30 @@ img {
     margin: inherit;
 }
 
+#demand_bar {
+    
+    background: red;
+    margin-top: 10%;
+    position: absolute;
+    font-size: 300%;
+    line-height: 100%;
+    width: 25%;
+    height: 3%
+}
+
+#supply_bar {
+    
+    background: green;
+    margin-top: 10%;
+    position: absolute;
+    font-size: 300%;
+    line-height: 100%;
+    width: 25%;
+    height: 3%
+}
+
 #nz_map {
+
     padding: inherit;
     margin: inherit;
     margin-left: 25%;
