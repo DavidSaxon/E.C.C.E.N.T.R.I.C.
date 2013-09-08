@@ -5,12 +5,28 @@
 
 var n = 4, // number of layers
     m = 200, // number of samples per layer
-    stack = d3.layout.stack().offset("wiggle"),
-    layers0 = stack(d3.range(n).map(function() { return bumpLayer(m); })),
-    layers1 = stack(d3.range(n).map(function() { return bumpLayer(m); }));
+    stack,
+    layers0,
+    layers1;
 
 var width = 1200,
     height = 480;
+
+var svg = d3.select("#data_field").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var area;
+
+
+function setup_graph() {
+
+    stack = d3.layout.stack().offset("wiggle");
+    layers0 = stack(d3.range(n).map(function() { return bumpLayer(m); }));
+    layers1 = stack(d3.range(n).map(function() { return bumpLayer(m); }));
+
+var color = d3.scale.linear()
+    .range(["#aad", "#556"]);
 
 var x = d3.scale.linear()
     .domain([0, m - 1])
@@ -20,23 +36,29 @@ var y = d3.scale.linear()
     .domain([0, d3.max(layers0.concat(layers1), function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); })])
     .range([height, 0]);
 
-var color = d3.scale.linear()
-    .range(["#aad", "#556"]);
-
-var area = d3.svg.area()
+area = d3.svg.area()
     .x(function(d) { return x(d.x); })
     .y0(function(d) { return y(d.y0); })
     .y1(function(d) { return y(d.y0 + d.y); });
 
-var svg = d3.select("#data_field").append("svg")
-    .attr("width", width)
-    .attr("height", height);
 
 svg.selectAll("path")
     .data(layers0)
   .enter().append("path")
     .attr("d", area)
     .style("fill", function() { return color(Math.random()); });
+
+}
+
+function update_graph() {
+  svg.selectAll("path")
+    .data(function() {
+        return stack(d3.range(n).map(function() { return bumpLayer(m); }));
+      })
+    .transition()
+      .duration(2500)
+      .attr("d", area);;
+}
 
 function transition() {
   d3.selectAll("path")
@@ -55,8 +77,8 @@ function bumpLayer(n) {
 
   function bump(a) {
     var x = 1 / (.1 + Math.random()),
-        y = 2 * Math.random() - .5,
-        z = 10 / (.1 + Math.random());
+        y = 2 * Math.random() - .5,    
+        z = 10 / (.1 + impact);
     for (var i = 0; i < n; i++) {
       var w = (i / n - y) * z;
       a[i] += x * Math.exp(-w * w);
