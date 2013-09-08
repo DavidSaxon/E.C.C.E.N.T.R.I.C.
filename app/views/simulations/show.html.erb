@@ -39,21 +39,25 @@
   $(document).ready(function(){
     $('.carousel').carousel();
 
-
-      // produce sliders
+    // produce sliders
     var sliders = document.getElementsByClassName('slider');
     for (var i = 0; i < sliders.length; ++i) {
       var item = sliders[i];
+      
       $(item).slider( { 
-        value: 15,
+        value: document.getElementById("v"+item.id).innerHTML,
+
         change: function(e, ui){
+          var txt = document.getElementById("v"+this.id);
           //Do something with ui.value
-          //$.ajax('/policies/update', {
-          //  type: 'PUT',
-          //  data: { title: 'point', description: 'some random point', x: right_x, y: right_y },
+          txt.innerHTML = ui.value;
+          $.ajax('/policies/'+this.id, {
+            type: 'PATCH',
+            data: { policy: { value: ui.value }, commit: "Update Policy" },
             //success: function() { .. },
-            //error: function() { .. }
-          //});
+            error: function() { alert("err"); }
+          });
+
         } 
       });
     }

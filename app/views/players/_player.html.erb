@@ -18,13 +18,13 @@
 <% player.policy.each do |policy| %> 
 <div class="row">
   <div class="col-sm-3">
-    <strong>Policy:</strong>
+    <strong>Policy:</strong> <%= policy.setting.title %>
   </div>
   <div class="col-sm-3">
-    <%= policy.setting.title %> set to <%= policy.value %>
+     <div class="text", id="v<%= policy.id %>"><%= policy.value %></div>
   </div>
   <div class="col-sm-6">
-    <div class="slider"></div>
+    <div class="slider", id="<%= policy.id %>"></div>
   </div>
 </div>
 <% end %>
