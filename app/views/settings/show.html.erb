@@ -15,5 +15,20 @@
   <%= @setting.description %>
 </p>
 
+<p>
+  <strong>Emissions:</strong>
+  <%= @setting.lin_emmision %>
+</p>
+
+<p>
+  <strong>Supple:</strong>
+  <%= @setting.lin_supply %>
+</p>
+
+<p>
+  <strong>Demand:</strong>
+  <%= @setting.lin_demand %>
+</p>
+
 <%= link_to 'Edit', edit_setting_path(@setting) %> |
 <%= link_to 'Back', settings_path %>

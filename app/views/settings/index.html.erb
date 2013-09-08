@@ -6,6 +6,9 @@
       <th>id</th>
       <th>Title</th>
       <th>Description</th>
+      <th>Emmisions</th>
+      <th>Supply</th>
+      <th>Demand</th>
       <th></th>
       <th></th>
       <th></th>
@@ -18,6 +21,9 @@
         <td><%= setting.id %></td>
         <td><%= setting.title %></td>
         <td><%= setting.description %></td>
+        <td><%= setting.lin_emmision %></td>
+        <td><%= setting.lin_supply %></td>
+        <td><%= setting.lin_demand %></td>
         <td><%= link_to 'Show', setting %></td>
         <td><%= link_to 'Edit', edit_setting_path(setting) %></td>
         <td><%= link_to 'Destroy', setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>

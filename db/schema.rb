@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130827114710) do
+ActiveRecord::Schema.define(version: 20130908222511) do
 
   create_table "displays", force: true do |t|
     t.string   "name"
@@ -60,10 +60,13 @@ ActiveRecord::Schema.define(version: 20130827114710) do
   add_index "policies", ["setting_id"], name: "index_policies_on_setting_id"
 
   create_table "settings", force: true do |t|
-    t.string   "title",       default: "", null: false
-    t.text     "description", default: "", null: false
+    t.string   "title",        default: "",  null: false
+    t.text     "description",  default: "",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "lin_emmision", default: 1.0
+    t.float    "lin_supply",   default: 1.0
+    t.float    "lin_demand",   default: 1.0
   end
 
   create_table "simulations", force: true do |t|
