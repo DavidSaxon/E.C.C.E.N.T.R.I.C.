@@ -36,6 +36,8 @@
 
 
 <script>
+  var impact = 0.5;
+
   $(document).ready(function(){
     $('.carousel').carousel();
 
@@ -49,6 +51,8 @@
 
         change: function(e, ui){
           var txt = document.getElementById("v"+this.id);
+
+
           //Do something with ui.value
           txt.innerHTML = ui.value;
           $.ajax('/policies/'+this.id, {
@@ -58,8 +62,12 @@
             error: function() { alert("err"); }
           });
 
+          impact = ui.value / 100;
+          update_display();
+
         } 
       });
     }
+    setup_display();
   });
 </script>
