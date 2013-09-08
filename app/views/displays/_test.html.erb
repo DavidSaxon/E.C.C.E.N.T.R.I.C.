@@ -20,39 +20,42 @@
 <img id="clouds" src="/images/clouds.png", alt="clouds", width="400px">
 
 <script>
-
 var cloudOpUp = true;
-var cloudOpacity = 0.5;
 
-right_x = $("#nz_map").offset().left;
-right_y = $("#nz_map").offset().top;
+function setup_map() {
+    right_x = $("#nz_map").offset().left;
+    right_y = $("#nz_map").offset().top;
 
-$("#clouds").css({
-	opacity: cloudOpacity,
-	left:right_x + 'px', 
-	top:right_y + 'px'
-});
+    $("#clouds").css({
+        opacity: impact,
+        left:right_x + 'px', 
+        top:right_y + 'px'
+    });
+}
 
+function update_map() {
+    $("#clouds").css({opacity: impact});
+}
 
 $("#clouds").onclick = function() {
 
     //change clouds opacity
     if (cloudOpUp) {
-        cloudOpacity += 0.1;
+        impact += 0.1;
     }
     else {
-        cloudOpacity -= 0.1;
+        impact -= 0.1;
     }
-    if (cloudOpacity < 0.0) {
+    if (impact < 0.0) {
         cloudOpUp = true;
-        cloudOpacity = 0.0;
+        impact = 0.0;
     }
-    else if (cloudOpacity > 1.0) {
+    else if (impact > 1.0) {
         cloudOpUp = false;
-        cloudOpacity = 1.0;
+        impact = 1.0;
     }
 
-    $("#clouds").css({opacity: cloudOpacity});
+    update_map();
 };
 
 </script>
