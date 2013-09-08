@@ -41,18 +41,48 @@ function init() {
     }
 
     //make sliders
-    $("#slider").slider({
+    $("#coal_slider").slider({
         min: 0,
         max: 100,
         slide: function() {
 
-            $("#clouds").css({opacity: $("#slider").slider("value") / 100.0});
-            var demandLevel = Math.floor($("#slider").slider("value") / 3) + 10;
-            $("#demand_bar").css("margin-top", demandLevel.toString() + "%");
-            demandLevel = 49 - demandLevel;
-            $("#supply_bar").css("margin-top", demandLevel.toString() + "%");
+            recalculate();
         }
     });
+    $("#wind_turbine_slider").slider({
+        min: 0,
+        max: 100,
+        slide: function() {
+
+            recalculate();
+        }
+    });
+    $("#nuclear_slider").slider({
+        min: 0,
+        max: 100,
+        slide: function() {
+
+            recalculate();
+        }
+    });
+    $("#insulation_slider").slider({
+        min: 0,
+        max: 100,
+        slide: function() {
+
+            recalculate();
+        }
+    });
+    $("#vacuum_slider").slider({
+        min: 0,
+        max: 100,
+        slide: function() {
+
+            recalculate();
+        }
+    });
+
+    recalculate();
 
     map = document.getElementById('mainspace');
     $(map).contextPopup({
@@ -116,6 +146,132 @@ jQuery(document).ready(function () {
 });
 
 
+//Level values
+var baseSupply = 50;
+var baseDemand = 75;
+var baseEmissions = 50.0;
+
+//recalculate the levels (for demoing)
+function recalculate() {
+
+    //apply slider values
+    var energySupply = baseSupply +
+        Math.floor($("#coal_slider").slider("value") / 2.0) +
+        Math.floor($("#wind_turbine_slider").slider("value") / 6.0) +
+        Math.floor($("#nuclear_slider").slider("value"));
+    var energyDemand = baseDemand -
+        Math.floor($("#insulation_slider").slider("value") / 5.0) +
+        Math.floor($("#vacuum_slider").slider("value") / 3.2);
+    var carbonEmissions = baseEmissions +
+         Math.floor($("#coal_slider").slider("value") / 1.5) -
+         Math.floor($("#vacuum_slider").slider("value") / 2.0);
+
+    //change text
+    document.getElementById("supply_bar").innerHTML = "Energy Supply: " +
+        (energySupply * 10) + " TWh/yr";
+    document.getElementById("demand_bar").innerHTML = "Energy Demand: " +
+        (energyDemand * 10) + " TWh/yr";
+    document.getElementById("carbon_emission").innerHTML = "Carbon Emissions: " +
+        (carbonEmissions * 7) + " MtCO2e/yr";
+
+     //update graph and simulation
+    var supplyPercent = 40 - Math.floor(energySupply / 2.5) + 5;
+    $("#supply_bar").css("margin-top", supplyPercent.toString() + "%");
+    var demandPercent = 40 - Math.floor(energyDemand / 2.5) + 5;
+    $("#demand_bar").css("margin-top", demandPercent.toString() + "%");
+    var emisionsOpacity = carbonEmissions / 100.0;
+    $("#clouds").css({opacity: emisionsOpacity});
+
+    //change the reaction
+    if (energySupply >= energyDemand && carbonEmissions < 60 &&
+        Math.floor($("#nuclear_slider").slider("value")) < 50) {
+
+        //document.getElementById("face").innerHTML = ":)";
+        document.getElementById("face").src="../images/happy.png";
+    }
+    else {
+
+        //document.getElementById("face").innerHTML = ":(";
+        document.getElementById("face").src="../images/sad.png";
+    }
+
+    //change what people are saying
+    if (energySupply < energyDemand / 2) {
+
+        document.getElementById("comment_1").innerHTML =
+            "\'My husband who was in a coma died when his life " +
+            "support ran out of power\'";
+    }
+    else if (energySupply < energyDemand / 1.7) {
+
+        document.getElementById("comment_1").innerHTML =
+            "\'My kitchen has a layer of ice on the floor since " + 
+            "I can\'t turn my heater on.\'";
+    }
+    else if (energySupply < energyDemand / 1.3) {
+
+        document.getElementById("comment_1").innerHTML =
+            "\'My t.v. has no power\'";
+    }
+    else if (energySupply < energyDemand) {
+
+        document.getElementById("comment_1").innerHTML =
+            "\'There\'s not enough power for my private render farm\'";
+    }
+    else if (energySupply > energyDemand * 1.5) {
+
+        document.getElementById("comment_1").innerHTML =
+        "\'SOOO MUCH POWER!\'";
+    }
+    else {
+
+        document.getElementById("comment_1").innerHTML =
+            "\'The level of power is sufficient\'";
+    }
+
+    if (carbonEmissions < 20) {
+
+        document.getElementById("comment_2").innerHTML =
+            "\'The air is so pure I'm aging backwards\'";
+    }
+    else if (carbonEmissions < 40) {
+
+        document.getElementById("comment_2").innerHTML =
+            "\'The air is so clean!\'";
+    }
+    else if (carbonEmissions < 60) {
+
+        document.getElementById("comment_2").innerHTML =
+            "\'cough cough\'";
+    }
+    else if (carbonEmissions < 80) {
+
+        document.getElementById("comment_2").innerHTML =
+            "\'I think I have the black lung\'";
+    }
+    else {
+
+        document.getElementById("comment_2").innerHTML =
+            "\'I lost my daughter in a cloud of carbon\'";
+    }
+
+    if (Math.floor($("#nuclear_slider").slider("value")) < 10) {
+
+        document.getElementById("comment_3").innerHTML =
+            "\'I like turtles\'";
+    }
+    else if (Math.floor($("#nuclear_slider").slider("value")) < 50) {
+
+        document.getElementById("comment_3").innerHTML =
+            "\'Say no to nuclear power\'";
+    }
+    else {
+
+        document.getElementById("comment_3").innerHTML =
+            "\'I have acquired a third arm due to radiation poisoning\'";
+    }
+}
+
 </script>
 
 </head>
@@ -125,14 +281,43 @@ jQuery(document).ready(function () {
 <div id="content">
     <div id="mainspace">
 
-        <div id="demand_bar">Energy Demand</div>
-        <div id="supply_bar">Energy Supply</div>
         <img id="nz_map" src="/images/nz_map.png", alt: "New Zealand map">
         <img id="clouds" src="/images/clouds.png", alt: "clouds">
+        <div id="carbon_emission">Carbon Emissions:</div>
+        <div id="graph_panel"></div>
+        <div id="demand_bar">Energy Demand</div>
+        <div id="supply_bar">Energy Supply</div>
+
+        <div id="reaction_bar">
+
+            <div id="reaction_title">Reactions</div>
+            <img id="face" src="/images/sad.png" alt: "reaction">
+            <div id="comment_title">Citizens are saying: </div>
+            <div id="comment_1">'My t.v. has no power'</div>
+            <div id="comment_2">'cough cough'</div>
+            <div id="comment_3">'I like turtles'</div>
+            </div>
+        </div>
     </div>    
     <div id="sidebar">
-        <div id="slider_title">Amount of Carbon</div>
-        <div id="slider"></div>
+
+        <div id="coal_slider_title">Coal Power Plants</div>
+        <div id="coal_slider"></div>
+
+        <div id="wind_turbine_slider_title">Wind Turbines</div>
+        <div id="wind_turbine_slider"></div>
+
+        <div id="nuclear_slider_title">Nuclear Power Plants</div>
+        <div id="nuclear_slider"></div>
+
+        <div id="insulation_slider_title">Home Insulation</div>
+        <div id="insulation_slider"></div>
+
+        <div id="vacuum_slider_title">
+            Massive Vacuum Cleaners to Suck Carbon Out of the Air (lol)
+        </div>
+        <div id="vacuum_slider"></div>
+
         <!-- <table>
             <tr>
                <th>Name</th>
