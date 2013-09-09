@@ -38,21 +38,9 @@
 <% end %>
 
 <script>
-  var emmision = [];
-  var supply = [];
-  var demand = [];
-  <% Setting.all.each do |setting| %>
-    emmision[<%= setting.id %>] = <%= setting.lin_emmision %>
-    supply[<%= setting.id %>]  = <%= setting.lin_supply %>
-    demand[<%= setting.id %>]  = <%= setting.lin_demand %>
-  <% end %>
-
   var impact = 0.5;
-  var total_emmisions = 0;
-  var total_supply = 0;
-  var total_demand = 0;
 
-  var slider_values = [];
+
 
   $(document).ready(function(){
     $('.carousel').carousel();
@@ -61,11 +49,9 @@
     var sliders = document.getElementsByClassName('slider');
     for (var i = 0; i < sliders.length; ++i) {
       var item = sliders[i];
-      slider_values[item.id] = document.getElementById("v"+item.id).innerHTML;
       
       $(item).slider( { 
         value: document.getElementById("v"+item.id).innerHTML,
-
 
         change: function(e, ui){
           var txt = document.getElementById("v"+this.id);
@@ -80,8 +66,7 @@
             error: function() { alert("err"); }
           });
 
-          impact = (ui.value / 100) * emmision[this.id];
-          update_values();
+          impact = ui.value / 100;
           update_display();
 
         } 
@@ -90,16 +75,21 @@
     setup_display();
   });
 
-  function update_values() {
-    total_emmisions = 0;
-    total_supply = 0;
-    total_demand = 0;
 
-    for (var i = 1; i < slider_values.length; ++i) {
-      total_emmisions += slider_values[i] * emmision[i];
-      total_supply += slider_values[i] * supply[i];
-      total_demand += slider_values[i] * demand[i];
-    }
+  <% Setting.all.each do |setting| %>
+    var <%= setting.name %>_emmision = <%= setting.lin_emmision %>
+    var <%= setting.name %>_supply = <%= setting.lin_supply %>
+    var <%= setting.name %>_demand = <%= setting.lin_demand %>
+  <% end %>
+
+  function update_values() {
+
+
+
+
+
+
+
   }
 
 

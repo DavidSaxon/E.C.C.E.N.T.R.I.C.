@@ -62,6 +62,7 @@
     for (var i = 0; i < sliders.length; ++i) {
       var item = sliders[i];
       slider_values[item.id] = document.getElementById("v"+item.id).innerHTML;
+      alert(item.id + " = " +slider_values[item.id]);
       
       $(item).slider( { 
         value: document.getElementById("v"+item.id).innerHTML,
@@ -95,11 +96,14 @@
     total_supply = 0;
     total_demand = 0;
 
-    for (var i = 1; i < slider_values.length; ++i) {
+    for (var i = 0; i < slider_values.length; ++i) {
       total_emmisions += slider_values[i] * emmision[i];
       total_supply += slider_values[i] * supply[i];
       total_demand += slider_values[i] * demand[i];
     }
+
+    alert( "total emmisions = "+total_emmisions );
+
   }
 
 
