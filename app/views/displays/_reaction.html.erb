@@ -1,0 +1,98 @@
+<style>
+  #reaction_bar{
+     min-height:780px;
+     height:auto !important;
+     height:780px; 
+     text-align: center;
+  }
+</style>
+
+<div id="reaction_bar" width="100%" height="780">
+
+            <div id="reaction_title">Reactions</div>
+            <img id="face" src="/images/sad.png" alt: "reaction">
+            <div id="comment_title">Citizens are saying: </div>
+            <div id="comment_1">'My t.v. has no power'</div>
+            <div id="comment_2">'cough cough'</div>
+            <div id="comment_3">'I like turtles'</div>
+            
+</div>
+
+<script type="text/javascript">
+
+  function refreshReaction(){
+  //change the reaction
+    if (total_supply >= total_demand && total_emmisions < 60) {
+
+        //document.getElementById("face").innerHTML = ":)";
+        document.getElementById("face").src="../images/happy.png";
+    }
+    else {
+
+        //document.getElementById("face").innerHTML = ":(";
+        document.getElementById("face").src="../images/sad.png";
+    }
+
+    //change what people are saying
+    if (total_supply < total_demand / 2) {
+
+        document.getElementById("comment_1").innerHTML =
+            "\'My husband who was in a coma died when his life " +
+            "support ran out of power\'";
+    }
+    else if (total_supply < total_demand / 1.7) {
+
+        document.getElementById("comment_1").innerHTML =
+            "\'My kitchen has a layer of ice on the floor since " + 
+            "I can\'t turn my heater on.\'";
+    }
+    else if (total_supply < total_demand / 1.3) {
+
+        document.getElementById("comment_1").innerHTML =
+            "\'My t.v. has no power\'";
+    }
+    else if (total_supply < total_demand) {
+
+        document.getElementById("comment_1").innerHTML =
+            "\'There\'s not enough power for my private render farm\'";
+    }
+    else if (total_supply > total_demand * 1.5) {
+
+        document.getElementById("comment_1").innerHTML =
+        "\'SOOO MUCH POWER!\'";
+    }
+    else {
+
+        document.getElementById("comment_1").innerHTML =
+            "\'The level of power is sufficient\'";
+    }
+
+    if (total_emmisions < 20) {
+
+        document.getElementById("comment_2").innerHTML =
+            "\'The air is so pure I'm aging backwards\'";
+    }
+    else if (total_emmisions < 40) {
+
+        document.getElementById("comment_2").innerHTML =
+            "\'The air is so clean!\'";
+    }
+    else if (total_emmisions < 60) {
+
+        document.getElementById("comment_2").innerHTML =
+            "\'cough cough\'";
+    }
+    else if (total_emmisions < 80) {
+
+        document.getElementById("comment_2").innerHTML =
+            "\'I think I have the black lung\'";
+    }
+    else {
+
+        document.getElementById("comment_2").innerHTML =
+            "\'I lost my daughter in a cloud of carbon\'";
+    }
+
+  }
+
+</script>
