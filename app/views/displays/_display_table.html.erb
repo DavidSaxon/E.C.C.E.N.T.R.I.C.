@@ -11,7 +11,7 @@
       </div>
 
       <div class="item">
-        <%= render 'displays/graph' %>
+        <%= render 'displays/simple_graph' %>
         <div class="carousel-caption">
           <p>Graph</p>
         </div>
@@ -39,6 +39,7 @@ function setup_display() {
 
 function update_display() {
   update_graph();
+  update_map();
   update_map();
 }
 

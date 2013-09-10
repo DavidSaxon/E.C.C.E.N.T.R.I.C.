@@ -76,9 +76,9 @@ function transition() {
 function bumpLayer(n) {
 
   function bump(a) {
-    var x = 1 / (.1 + Math.random()),
-        y = 2 * Math.random() - .5,    
-        z = 10 / (.1 + impact);
+    var x = 1 / (.1 + total_emmisions), // Math.random()
+        y = 2 * 0.5 - .5,
+        z = 10 / (.1 + 0.5);
     for (var i = 0; i < n; i++) {
       var w = (i / n - y) * z;
       a[i] += x * Math.exp(-w * w);

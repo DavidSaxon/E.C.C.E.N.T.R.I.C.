@@ -61,7 +61,7 @@
     var sliders = document.getElementsByClassName('slider');
     for (var i = 0; i < sliders.length; ++i) {
       var item = sliders[i];
-      slider_values[item.id] = document.getElementById("v"+item.id).innerHTML / 100;
+      slider_values[item.id] = document.getElementById("v"+item.id).innerHTML;
       
       $(item).slider( { 
         value: document.getElementById("v"+item.id).innerHTML,
@@ -81,14 +81,12 @@
           });
 
           impact = (ui.value / 100) * emmision[this.id];
-          slider_values[this.id] = ui.value / 100;
           update_values();
           update_display();
 
         } 
       });
     }
-    update_values();
     setup_display();
   });
 
