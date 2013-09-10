@@ -1,11 +1,4 @@
-<div class="container"
-  style="position: absolute; width: 20%; background: #ffffff">
-
-  <%= render :partial => '/simulations/slider_bar' %>
-</div>
-
-<div class="container"
-  style="position: absolute; margin-left: 20%; width: 60%">
+<div class="container">
 
 <!-- Example row of columns -->
 <div class="row">
@@ -24,7 +17,7 @@
 </div>
 <hr>
 
-<!-- <%= render @simulation.players %>/ -->
+<%= render @simulation.players %>
 
 <div class="row">
     <div class="col-sm-12">
@@ -68,7 +61,7 @@
     var sliders = document.getElementsByClassName('slider');
     for (var i = 0; i < sliders.length; ++i) {
       var item = sliders[i];
-      slider_values[item.id] = document.getElementById("v"+item.id).innerHTML / 100;
+      slider_values[item.id] = document.getElementById("v"+item.id).innerHTML;
       
       $(item).slider( { 
         value: document.getElementById("v"+item.id).innerHTML,
@@ -88,14 +81,12 @@
           });
 
           impact = (ui.value / 100) * emmision[this.id];
-          slider_values[this.id] = ui.value / 100;
           update_values();
           update_display();
 
         } 
       });
     }
-    update_values();
     setup_display();
   });
 

@@ -1,0 +1,61 @@
+<%= javascript_include_tag "http://d3js.org/d3.v3.min.js", charset: "utf-8" %>
+<center>
+<div class='chart' id='chart-2'>
+</div>
+</center>
+
+<script type='text/javascript'>
+var data = [32, 57, 112],
+    dataEnter = data.concat(293),
+    dataExit = data.slice(0, 2),
+    w = 1200,
+    h = 780,
+    x = d3.scale.ordinal().domain([57, 32, 112]).rangePoints([0, w], 1),
+    y = d3.scale.ordinal().domain(data).rangePoints([0, h], 2);
+
+
+var svg = d3.select("#chart-2").append("svg")
+      .attr("width", w)
+      .attr("height", h);
+
+function setup_graph() {
+
+   var e = svg.selectAll("emmisions").data("emmisions")
+    .enter()
+    	.append("circle")
+      	.attr("class", "emmisions")
+      	.attr("cx", 430)
+      	.attr("cy", 270)
+      	.attr("r", 100*total_emmisions)
+      	.style("fill", "gray");
+
+    e.append("text")
+    	.attr("dx", 12)
+      	.attr("dy", ".35em")
+     	.attr("text-anchor", "middle")
+     	.text("Emissions");
+
+ 	svg.selectAll("supply").data("supply")
+    .enter().append("circle")
+      .attr("class", "supply")
+      .attr("cx", 730)
+      .attr("cy", 230)
+      .attr("r", 100*total_supply)
+      .style("fill", "green");
+
+   	svg.selectAll("demand").data("demand")
+    .enter().append("circle")
+      .attr("class", "demand")
+      .attr("cx", 580)
+      .attr("cy", 530)
+      .attr("r", 100*total_demand)
+      .style("fill", "red");
+}
+
+function update_graph() {
+	  svg.selectAll(".emmisions").data("emissions").attr("r", 100*total_emmisions).transition().duration(3000);
+      svg.selectAll(".supply").data("supply").attr("r", 100*total_supply).transition().duration(3000);
+      svg.selectAll(".demand").data("demand").attr("r", 100*total_demand).transition().duration(3000);
+}
+
+</script>
