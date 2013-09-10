@@ -24,6 +24,14 @@
         </div>
       </div>
 
+      <div class="item">
+
+        <%= render 'displays/reaction' %>
+        <div class="carousel-caption">
+          <p>Reactions</p>
+        </div>
+      </div>
+
     </div><!-- /.carousel-inner -->
   <!--  Next and Previous controls below
         href values must reference the id for this carousel -->
@@ -35,11 +43,14 @@
 function setup_display() {
   setup_graph();
   setup_map();
+  refreshReaction();
 }
 
 function update_display() {
+
   update_graph();
   update_map();
+  refreshReaction();
 }
 
 </script>

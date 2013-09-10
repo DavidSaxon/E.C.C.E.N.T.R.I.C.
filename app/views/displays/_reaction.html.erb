@@ -9,12 +9,17 @@
 
 <div id="reaction_bar" width="100%" height="780">
 
-            <div id="reaction_title">Reactions</div>
+            <div id="reaction_title"
+                style="font-size: 300%; padding-top:5%">
+                Reactions</div>
             <img id="face" src="/images/sad.png" alt: "reaction">
-            <div id="comment_title">Citizens are saying: </div>
-            <div id="comment_1">'My t.v. has no power'</div>
-            <div id="comment_2">'cough cough'</div>
-            <div id="comment_3">'I like turtles'</div>
+            <div id="comment_title" style="font-size: 250%; padding-top: 5%">
+                Citizens are saying: </div>
+            <div style="font-size: 150%"> 
+                <div id="comment_1">'My t.v. has no power'</div>
+                <div id="comment_2">'cough cough'</div>
+                <div id="comment_3">'I like turtles'</div>
+            </div>
             
 </div>
 
@@ -22,7 +27,7 @@
 
   function refreshReaction(){
   //change the reaction
-    if (total_supply >= total_demand && total_emmisions < 60) {
+    if (total_supply >= total_demand && total_emmisions < 0.6) {
 
         //document.getElementById("face").innerHTML = ":)";
         document.getElementById("face").src="../images/happy.png";
@@ -67,22 +72,22 @@
             "\'The level of power is sufficient\'";
     }
 
-    if (total_emmisions < 20) {
+    if (total_emmisions < 0.2) {
 
         document.getElementById("comment_2").innerHTML =
             "\'The air is so pure I'm aging backwards\'";
     }
-    else if (total_emmisions < 40) {
+    else if (total_emmisions < 0.4) {
 
         document.getElementById("comment_2").innerHTML =
             "\'The air is so clean!\'";
     }
-    else if (total_emmisions < 60) {
+    else if (total_emmisions < 0.6) {
 
         document.getElementById("comment_2").innerHTML =
             "\'cough cough\'";
     }
-    else if (total_emmisions < 80) {
+    else if (total_emmisions < 0.8) {
 
         document.getElementById("comment_2").innerHTML =
             "\'I think I have the black lung\'";
