@@ -1,5 +1,5 @@
 <div class="container"
-  style="position: absolute; width: 20%; background: #ffffff">
+  style="position: absolute; width: 20%; background: #ffffff; border:4px solid black">
 
   <%= render :partial => '/simulations/slider_bar' %>
 </div>
@@ -19,7 +19,6 @@
     <div class="col-sm-12">
           <h1><%= @simulation.name %></h1>
           <p id="notice"><%= notice %></p>
-          <p class="lead">The simulation page should be here!</p>
     </div>
 </div>
 <hr>
@@ -102,7 +101,7 @@
   });
 
   function update_values() {
-    total_emmisions = 1.0;
+    total_emmisions = 0.0;
     total_supply = 1.0;
     total_demand = 1.0;
 
