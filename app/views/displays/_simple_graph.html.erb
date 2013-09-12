@@ -8,8 +8,8 @@
 var data = [32, 57, 112],
     dataEnter = data.concat(293),
     dataExit = data.slice(0, 2),
-    w = 1200,
-    h = 780,
+    w = 700,
+    h = 500,
     x = d3.scale.ordinal().domain([57, 32, 112]).rangePoints([0, w], 1),
     y = d3.scale.ordinal().domain(data).rangePoints([0, h], 2);
 
@@ -24,8 +24,8 @@ function setup_graph() {
     .enter()
     	.append("circle")
       	.attr("class", "emmisions")
-      	.attr("cx", 430)
-      	.attr("cy", 270)
+      	.attr("cx", 230)
+      	.attr("cy", 100)
       	.attr("r", 100*total_emmisions)
       	.style("fill", "gray");
 
@@ -38,16 +38,16 @@ function setup_graph() {
  	svg.selectAll("supply").data("supply")
     .enter().append("circle")
       .attr("class", "supply")
-      .attr("cx", 730)
-      .attr("cy", 230)
+      .attr("cx", 530)
+      .attr("cy", 110)
       .attr("r", 100*total_supply)
       .style("fill", "green");
 
    	svg.selectAll("demand").data("demand")
     .enter().append("circle")
       .attr("class", "demand")
-      .attr("cx", 580)
-      .attr("cy", 530)
+      .attr("cx", 380)
+      .attr("cy", 330)
       .attr("r", 100*total_demand)
       .style("fill", "red");
 }

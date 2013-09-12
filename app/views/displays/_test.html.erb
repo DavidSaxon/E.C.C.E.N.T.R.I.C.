@@ -15,9 +15,9 @@
 }
 </style>
 
+<img id="nz_map" src="/images/nz_map.png", alt="New Zealand map", width="400px">
+<img id="clouds" src="/images/clouds.png", alt="clouds", width="400px">
 
-<img id="nz_map" src="/images/nz_map.png", alt="New Zealand map", width="600px", height="480px">
-<img id="clouds" src="/images/clouds.png", alt="clouds", width="600px">
 
 <script>
 var cloudOpUp = true;
@@ -27,14 +27,14 @@ function setup_map() {
     right_y = $("#nz_map").offset().top;
 
     $("#clouds").css({
-        opacity: impact,
+        opacity: total_emmisions,
         left:right_x + 'px', 
         top:right_y + 'px'
     });
 }
 
 function update_map() {
-    $("#clouds").css({opacity: impact});
+    $("#clouds").css({opacity: total_emmisions});
 }
 
 $("#clouds").onclick = function() {

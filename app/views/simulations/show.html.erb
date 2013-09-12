@@ -62,7 +62,9 @@
   var slider_values = [];
 
   $(document).ready(function(){
-    $('.carousel').carousel();
+    $('.carousel').carousel({
+            interval: false
+        });
 
     // produce sliders
     var sliders = document.getElementsByClassName('slider');
@@ -100,9 +102,9 @@
   });
 
   function update_values() {
-    total_emmisions = 0;
-    total_supply = 0;
-    total_demand = 0;
+    total_emmisions = 1.0;
+    total_supply = 1.0;
+    total_demand = 1.0;
 
     for (var i = 1; i < slider_values.length; ++i) {
       total_emmisions += slider_values[i] * emmision[i];
